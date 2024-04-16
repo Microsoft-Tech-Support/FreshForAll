@@ -1,4 +1,5 @@
 import { Button, Typography, ImageList, ImageListItem, Card, CardHeader, CardMedia, CardContent, TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import produce from '../assets/Fresh-Produce-Collage.jpg';
 import apples from '../assets/apples.webp';
@@ -86,8 +87,10 @@ export default function Home() {
     const [cEmail, setCEmail] = useState("");
     const [cMessage, setCMessage] = useState("");
 
+    const navigate = useNavigate();
+
     return (
-        <Box minHeight={`100vh`} minWidth={`100%`} sx={{ scrollBehavior: `smooth` }}>
+        <Box minHeight={`100%`} width={`100%`} sx={{ scrollBehavior: `smooth` }}>
             <Box id="home" width={`100%`} style={{ background: 'linear-gradient(to right bottom, #003329, #6ee8cf)' }} paddingBottom={15} paddingTop={10}>
                 <Box width={`70%`} marginX={`auto`} display={`flex`} flexDirection={`row`} alignItems={`center`} marginBottom={10}>
                     <Typography variant='h3' color={`white`} sx={{ fontWeight: 600 }} marginRight={`auto`}>Fresh For All</Typography>
@@ -103,8 +106,8 @@ export default function Home() {
                         <Typography variant='h3' fontWeight={500} color={`white`} marginBottom={2}>Fresh produce, delivered straight to your doorstep.</Typography>
                         <Typography variant='body1' fontSize={20} fontWeight={400} color={`white`} marginBottom={3}>Fresh For All aims to revolutionize the ecommerce industry by helping consumers around the world order healthy produce without added ingredients straight from the vendor.</Typography>
                         <Box display={`flex`} alignItems={`center`} justifyContent={`space-between`}>
-                            <Button disableElevation size='large' variant='contained' color={`info`} sx={{ width: `48%`, height: '50px', borderRadius: '10px', fontSize: '18px' }}>Get Started Today!</Button>
-                            <Button disableElevation size='large' variant='contained' color={`secondary`} sx={{ width: `48%`, height: '50px', borderRadius: '10px', fontSize: '18px' }}>Return to your Produce!</Button>
+                            <Button onClick={() => navigate("/register", { replace: true })} disableElevation size='large' variant='contained' color={`info`} sx={{ width: `48%`, height: '50px', borderRadius: '10px', fontSize: '18px' }}>Get Started Today!</Button>
+                            <Button onClick={() => navigate("/login", { replace: true })} disableElevation size='large' variant='contained' color={`secondary`} sx={{ width: `48%`, height: '50px', borderRadius: '10px', fontSize: '18px' }}>Return to your Produce!</Button>
                         </Box>
                     </Box>
                     <Box width={`50%`}>
