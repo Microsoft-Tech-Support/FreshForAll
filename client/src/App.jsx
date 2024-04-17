@@ -21,6 +21,7 @@ import Header from './components/Header';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [username, setName] = useState("");
   const location = useLocation();
   const { hash, pathname, search } = location;
 
@@ -28,13 +29,13 @@ function App() {
     <Box display={`flex`}>
       {loggedIn && <SidebarNav />}
       <Box width={`100%`}>
-        {loggedIn && <Header setLoggedIn={setLoggedIn} />}
+        {loggedIn && <Header setLoggedIn={setLoggedIn} username={username} />}
         <Box>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path="/Login" element={<Login setLoggedIn={setLoggedIn} />} />
+            <Route path="/Login" element={<Login setLoggedIn={setLoggedIn} setName={setName} />} />
             <Route path='/Dashboard' element={<Dashboard />} />
-            <Route path="/Register" element={<Register />} />
+            <Route path="/Register" element={<Register setLoggedIn={setLoggedIn} setName={setName} />} />
             <Route path="/Settings" element={<Settings />} />
             <Route path="/Sell" element={<Sell />} />
             <Route path="/Buy" element={<Buy />} />
