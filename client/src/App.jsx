@@ -27,10 +27,8 @@ function App() {
 
   return (
     <div className={`flex`}>
-      {loggedIn && <SidebarNav setLoggedIn={setLoggedIn} />}
-      <div className={`w-full`} width={`100%`}>
-        {loggedIn && <Header setLoggedIn={setLoggedIn} username={username} />}
-        <div>
+      {loggedIn && <SidebarNav setLoggedIn={setLoggedIn} username={username} />}
+      <div className={`w-full`}>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path="/Login" element={<Login setLoggedIn={setLoggedIn} setName={setName} />} />
@@ -42,7 +40,6 @@ function App() {
             <Route path="/Buy/:id" element={<ShowProduct />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </div>
       </div>
     </div>
   )
