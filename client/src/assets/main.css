@@ -558,14 +558,6 @@ video {
   position: fixed;
 }
 
-.absolute {
-  position: absolute;
-}
-
-.relative {
-  position: relative;
-}
-
 .-bottom-40 {
   bottom: -10rem;
 }
@@ -588,10 +580,6 @@ video {
 
 .top-10 {
   top: 2.5rem;
-}
-
-.top-0 {
-  top: 0px;
 }
 
 .-z-20 {
@@ -690,10 +678,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-full {
-  height: 100%;
 }
 
 .min-h-full {
