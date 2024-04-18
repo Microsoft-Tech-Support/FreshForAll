@@ -1,4 +1,6 @@
 import { Button, Typography, ImageList, ImageListItem, Card, CardHeader, CardMedia, CardContent, TextField } from '@mui/material';
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import produce from '../assets/Fresh-Produce-Collage.jpg';
 import apples from '../assets/apples.webp';
@@ -63,7 +65,7 @@ const features = [
     {
         image: uploads,
         title: "AI Price Suggestion",
-        description: "Along with a seamless product uploads page, vendors can find a price with the click of  button through our application. Using an unsupervised model trained on a dataset of prices and produce, we predict the prices of produce the user has entered."
+        description: "Along with a seamless product uploads page, vendors can find a price with the click of  button through our application. We predict the prices of produce the user has entered."
     },
     {
         image: dashboard,
@@ -71,95 +73,84 @@ const features = [
         description: "Our user's built-in dashboard page allows them to see analytics on what they're selling such as profits and sales. Also available are lists and charts on orders and their prices."
     }
 ]
-
-function srcset(image, size, rows = 1, cols = 1) {
-    return {
-      src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
-      srcSet: `${image}?w=${size * cols}&h=${
-        size * rows
-      }&fit=crop&auto=format&dpr=2 2x`,
-    };
-}
   
 export default function Home() {
     const [cName, setCName] = useState("");
     const [cEmail, setCEmail] = useState("");
     const [cMessage, setCMessage] = useState("");
+    const [currentImage, setCurrentImage] = useState(0);
+
+    const navigate = useNavigate();
 
     return (
-        <Box minHeight={`100vh`} minWidth={`100%`} sx={{ scrollBehavior: `smooth` }}>
-            <Box id="home" width={`100%`} style={{ background: 'linear-gradient(to right bottom, #003329, #6ee8cf)' }} paddingBottom={15} paddingTop={10}>
-                <Box width={`70%`} marginX={`auto`} display={`flex`} flexDirection={`row`} alignItems={`center`} marginBottom={10}>
-                    <Typography variant='h3' color={`white`} sx={{ fontWeight: 600 }} marginRight={`auto`}>Fresh For All</Typography>
-                    <Box display={`flex`} alignItems={`center`}>
-                        <Typography component={`a`} href='#home' variant='h6' color={`white`} sx={{ fontWeight: 500, textDecoration: `none` }} marginRight={5}>Home</Typography>
-                        <Typography component={`a`} href='#features' variant='h6' color={`white`} sx={{ fontWeight: 500, textDecoration: `none` }} marginRight={5}>Features</Typography>
-                        <Typography component={`a`} href='#mission' variant='h6' color={`white`} sx={{ fontWeight: 500, textDecoration: `none` }} marginRight={5}>Our Mission</Typography>
-                        <Typography component={`a`} href='#contact' variant='h6' color={`white`} sx={{ fontWeight: 500, textDecoration: `none` }}>Contact</Typography>
-                    </Box>
-                </Box>
-                <Box width={`75%`} marginX={`auto`} display={`flex`} flexDirection={`row`} alignItems={`center`}>
-                    <Box width={`50%`}>
-                        <Typography variant='h3' fontWeight={500} color={`white`} marginBottom={2}>Fresh produce, delivered straight to your doorstep.</Typography>
-                        <Typography variant='body1' fontSize={20} fontWeight={400} color={`white`} marginBottom={3}>Fresh For All aims to revolutionize the ecommerce industry by helping consumers around the world order healthy produce without added ingredients straight from the vendor.</Typography>
-                        <Box display={`flex`} alignItems={`center`} justifyContent={`space-between`}>
-                            <Button disableElevation size='large' variant='contained' color={`info`} sx={{ width: `48%`, height: '50px', borderRadius: '10px', fontSize: '18px' }}>Get Started Today!</Button>
-                            <Button disableElevation size='large' variant='contained' color={`secondary`} sx={{ width: `48%`, height: '50px', borderRadius: '10px', fontSize: '18px' }}>Return to your Produce!</Button>
-                        </Box>
-                    </Box>
-                    <Box width={`50%`}>
-                        <ImageList sx={{ width: 500, marginX: `auto`, borderRadius: `15px`, boxShadow: '2px 2px 20px black', ":hover": { boxShadow: '2px 2px 40px black' }, transition: '0.2s all ease-in-out' }} variant='quilted' cols={4} rowHeight={121}>
-                        {images.map((item) => (
-                            <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
-                            <img
-                                {...srcset(item.img, 121, item.rows, item.cols)}
-                                alt={item.title}
-                                loading="lazy"
-                            />
-                            </ImageListItem>
-                        ))}
-                        </ImageList>
-                    </Box>
-                </Box>
-            </Box>
-            <Box id="features" width={`100%`} paddingY={5}>
-                <Typography width={`90%`} marginX={`auto`} variant='h3' fontWeight={500} marginBottom={5}>Features</Typography>
-                <Box width={`80%`} marginX={`auto`} display={`flex`} flexWrap={`wrap`} justifyContent={`center`}>
+        <div className={`min-h-screen w-full scroll-smooth`}>
+            <div className={`w-full py-14 px-5 bg-gradient-to-br from-[#003329] to-[#6ee8cf]`} id="home">
+                <div className={`w-4/6 mx-auto flex flex-row items-center mb-12`}>
+                    <p className={`text-4xl text-white font-bold mr-auto`}>Fresh For All</p>
+                    <div className={`flex items-center`}>
+                        <a href="#home" className={`cursor-pointer text-white text-xl font-semibold mr-5`}>Home</a>
+                        <a href="#features" className={`cursor-pointer text-white text-xl font-semibold mr-5`}>Features</a>
+                        <a href="#mission" className={`cursor-pointer text-white text-xl font-semibold mr-5`}>Our Mission</a>
+                        <a href="#contact" className={`cursor-pointer text-white text-xl font-semibold`}>Contact</a>
+                    </div>
+                </div>
+                <div className={`w-3/4 mx-auto flex flex-row items-center`}>
+                    <div className={`w-3/6`}>
+                        <p className={`font-semibold text-white mb-4 text-3xl`}>Fresh produce, delivered straight to your doorstep.</p>
+                        <p className={`text-xl mb-4 text-white font-medium`}>
+                            Fresh For All aims to revolutionize the ecommerce industry by helping consumers around the world
+                            order healthy produce without added ingredients straight from the vendor.
+                        </p>
+                        <div className={`flex items-center justify-between`}>
+                            <button onClick={() => navigate("/register", { replace: true })} className={`text-white bg-cyan-500 hover:bg-cyan-600 transition-all duration-200 ease-in-out w-[48%] h-12 rounded-lg text-xl`}>Get Started Today!</button>
+                            <button onClick={() => navigate("/login", { replace: true })} className={`text-white bg-purple-500 hover:bg-purple-600 transition-all duration-200 ease-in-out w-[48%] h-12 rounded-lg text-xl`}>Return to your Produce!</button>
+                        </div>
+                    </div>
+                    <div className={`w-3/6 px-5 py-5 flex justify-center items-center`}>
+                        <div onClick={currentImage !== 0 ? () => setCurrentImage(cImage => cImage - 1) : null} className={`mr-5 ${currentImage !== 0 ? `bg-white cursor-pointer` : 'bg-gray-400 cursor-not-allowed'} rounded-full`}><FaArrowLeft className={`m-3`} size={25} /></div>
+                        <img src={images[currentImage].img} alt={images[currentImage].title} className={`rounded-2xl w-96 h-56 shadow-lg shadow-white`}/>
+                        <div onClick={currentImage !== images.length - 1 ? () => setCurrentImage(cImage => cImage + 1) : null} className={`ml-5 ${currentImage !== images.length - 1 ? `bg-white cursor-pointer` : 'bg-gray-300 cursor-not-allowed'} rounded-full`}><FaArrowRight className={`m-3`} size={25} /></div>
+                    </div>
+                </div>
+            </div>
+            <div className={`w-full py-7 px-10`} id="features">
+                <p className={`mx-auto text-3xl font-semibold mb-5 w-fit`}>Features</p>
+                <div className={`mx-auto w-4/6 flex flex-wrap justify-between`}>
                     {features.map((feature, index) => {
                         return (
-                            <Card variant='elevation' sx={{ maxWidth: 420, marginRight: 5, marginBottom: index < 3 ? 4 : 0, borderRadius: 3 }} elevation={10} key={index}>
-                                <CardMedia sx={{ height: 220 }} image={feature.image} />
-                                <CardContent>
-                                    <Typography variant='h5' gutterBottom>{feature.title}</Typography>
-                                    <Typography variant='body2' color='text.secondary'>
+                            <div className={`w-[32%] mb-5 rounded-xl shadow-xl`} key={index}>
+                                <img className={`w-full h-3/6 rounded-t-xl shadow-md object-cover`} src={feature.image} alt={feature.title} />
+                                <div className={`p-4`}>
+                                    <p className={`text-2xl font-medium mb-1`}>{feature.title}</p>
+                                    <p className={`text-md font-normal text-gray-500`}>
                                         {feature.description}
-                                    </Typography>
-                                </CardContent>
-                            </Card>
+                                    </p>
+                                </div>
+                            </div>
                         )
                     })}
-                </Box>
-            </Box>
-            <Box id="mission" width={`100%`} paddingY={5} bgcolor={`#0b2431`} color={`white`}>
-                <Typography width={`90%`} marginX={`auto`} variant='h3' fontWeight={500} marginBottom={5}>Our Mission</Typography>
-                <Typography width={`80%`} marginX={`auto`} variant='body1' sx={{ fontSize: 20 }} fontWeight={400}>
+                </div>
+            </div>
+            <div className={`w-full py-7 px-10 bg-[#0b2431] text-white`} id="mission">
+                <p className={`mx-auto text-3xl font-semibold mb-5 w-fit`}>Our Mission</p>
+                <p className={`px-10 mx-auto text-xl`}>
                     Here at Fresh For All, we hope to shine a light into people, guiding them to healthy bodies and fresh produce delivered from local merchants.
                     By connecting people with nutritious food from nearby merchants, Fresh For All is not only promoting physical wellness but also strengthening
                     the fabric of neighborhoods. It's about empowering individuals to make healthy choices while simultaneously bolstering the vitality of local
                     businesses.
-                </Typography>
-            </Box>
-            <Box id="contact" width={`100%`} paddingY={5} display={`flex`} justifyContent={`center`} flexDirection={`column`}>
-                <Typography width={`90%`} marginX={`auto`} variant='h3' fontWeight={500} marginBottom={5}>Contact</Typography>
-                <Box width={`25%`} marginX={`auto`} display={`flex`} justifyContent={`center`} flexDirection={`column`} alignItems={`center`}>
-                    <Box width={`100%`} display={`flex`} justifyContent={`space-between`} marginBottom={2}>
-                        <TextField value={cName} onChange={(e) => setCName(e.target.value)} variant='outlined' sx={{ width: `49%`, fontSize: '30px' }} label='Name' required color='secondary' />
-                        <TextField value={cEmail} onChange={(e) => setCEmail(e.target.value)} type='email' variant='outlined' sx={{ width: `49%` }} label='Email' required color='secondary' />
-                    </Box>
-                    <TextField value={cMessage} onChange={(e) => setCMessage(e.target.value)} variant='outlined' fullWidth label="Message" required color='secondary' rows={3} multiline sx={{ marginBottom: 2 }} />
-                    <Button fullWidth variant='contained' color='secondary'>Send</Button>
-                </Box>
-            </Box>
-        </Box>
+                </p>
+            </div>
+            <div className={`w-full py-7 px-10 flex justify-center flex-col`} id="contact">
+                <p className={`mx-auto text-3xl font-semibold mb-5`}>Contact</p>
+                <div className={`w-2/5 mx-auto flex justify-center flex-col items-center`}>
+                    <div className={`w-full flex justify-between mb-4`}>
+                        <input className={`border-gray-300 border-2 focus:outline-none hover:border-gray-800 focus:border-purple-500 rounded-lg text-lg w-[49%] px-2 py-2`} placeholder='Name' value={cName} onChange={(e) => setCName(e.target.value)} required />
+                        <input className={`border-gray-300 border-2 focus:outline-none hover:border-gray-800 focus:border-purple-500 rounded-lg text-lg w-[49%] px-2 py-2`} placeholder='Email' type='email' required value={cEmail} onChange={(e) => setCEmail(e.target.value)}/>
+                    </div>
+                    <textarea rows={3} className={`w-full mb-4 px-2 py-2 border-gray-300 border-2 focus:outline-none hover:border-gray-800 focus:border-purple-500 rounded-lg text-lg`} placeholder='Message' value={cMessage} onChange={(e) => setCMessage(e.target.value)}></textarea>
+                    <button className={`bg-purple-500 font-semibold w-full px-5 py-2 rounded-lg hover:bg-purple-400 text-gray-100`}>Send</button>
+                </div>
+            </div>
+        </div>
     )
 }
