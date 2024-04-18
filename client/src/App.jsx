@@ -27,7 +27,7 @@ function App() {
 
   return (
     <div className={`flex`}>
-      {loggedIn && <SidebarNav setLoggedIn={setLoggedIn} />}
+      {loggedIn && <SidebarNav setLoggedIn={setLoggedIn} username={username} />}
       <div className={`w-full`}>
           <Routes>
             <Route path='/' element={<Home />} />
