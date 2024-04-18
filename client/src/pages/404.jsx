@@ -2,8 +2,8 @@ import { Box } from '@mui/material';
 
 export default function PageNotFound() {
     return (
-        <Box width={`100%`} height={`100%`}>
+        <div className={`w-screen h-screen`}>
 
-        </Box>
+        </div>
     )
 }

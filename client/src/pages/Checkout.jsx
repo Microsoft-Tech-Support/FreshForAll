@@ -2,8 +2,8 @@ import { Box } from '@mui/material';
 
 export default function Checkout() {
     return (
-        <Box width={`100%`} minHeight={`100%`}>
+        <div className={`h-screen bg-[#0b2431] text-white`}>
 
-        </Box>
+        </div>
     )
 }
