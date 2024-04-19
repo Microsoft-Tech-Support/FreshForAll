@@ -12,6 +12,7 @@ export default function Dashboard() {
     const [data, setData] = useState(undefined);
     const timePeriods = ["Months", "Week", "Year", "Year to Date", "Days"];
     const [currentTimePeriod, setCurrentTimePeriod] = useState(0);
+    const [currentAnalyticsPage, setCurrentAnalyticsPage] = useState("store");
 
     useEffect(() => {
         function getData() {
@@ -97,7 +98,14 @@ export default function Dashboard() {
     
 
     return (
-        <div className={`h-screen bg-[#0b2431] px-10 py-10`}>
+        <div className={`min-h-screen bg-[#0b2431] px-10 py-10`}>
+            <div className={`mb-4 flex justify-between w-11/12 mx-auto`}>
+                <h1 className={`text-3xl font-mono font-bold text-white`}>Dashboard</h1>
+                <div className={`flex items-center`}>
+                    <p onClick={() => setCurrentAnalyticsPage("store")} className={`mr-5 ${currentAnalyticsPage === 'store' ? 'text-green-400 bg-green-100 bg-opacity-20 px-2 py-1 rounded-lg' : 'text-white px-2 py-1 rounded-lg'} text-2xl font-semibold font-mono cursor-pointer`}>Store Analytics</p>
+                    <p onClick={() => setCurrentAnalyticsPage("personal")} className={`${currentAnalyticsPage !== 'store' ? 'text-green-400 bg-green-100 bg-opacity-20 px-2 py-1 rounded-lg' : 'text-white px-2 py-1 rounded-lg'} text-2xl font-semibold font-mono cursor-pointer`}>Personal Orders</p>
+                </div>
+            </div>
             <div className={`mb-4 flex justify-between w-11/12 mx-auto`}>
                 <div className={`p-4 bg-white w-[24%] rounded-lg flex justify-between`}>
                     <div>
@@ -129,7 +137,7 @@ export default function Dashboard() {
                 </div>
             </div>
             <div className={`mb-4 flex justify-between w-11/12 mx-auto`}>
-                <div className={`w-[74.55%] p-5 bg-white rounded-xl flex flex-col justify-center items-center`}>
+                <div className={`w-full p-5 bg-white rounded-xl flex flex-col justify-center items-center`}>
                     <div className={`flex items-center w-full justify-between mb-6`}>
                         <h1 className={`font-mono font-semibold text-2xl`}>Earnings</h1>
                         <h1 onClick={() => setCurrentTimePeriod((currIndex) => currIndex === timePeriods.length - 1 ? 0 : currIndex + 1)} className={`font-mono cursor-pointer font-medium text-xl p-1 px-2 bg-gray-300 rounded-lg`}>{timePeriods[currentTimePeriod]}</h1>
@@ -141,26 +149,18 @@ export default function Dashboard() {
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-                            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                            <Line type="monotone" dataKey="pv" stroke="#8884d8" strokeWidth={3} />
+                            <Line type="monotone" dataKey="uv" stroke="#82ca9d" strokeWidth={3}/>
                         </LineChart>
                     </ResponsiveContainer>
                 </div>
-                <div className={`w-[23.95%] p-5 bg-white rounded-lg`}>
-                    <div className={`flex items-center w-full justify-between mb-6`}>
-                        <h1 className={`font-mono font-semibold text-2xl`}>Sale History</h1>
-                        <h1 onClick={() => setCurrentTimePeriod((currIndex) => currIndex === timePeriods.length - 1 ? 0 : currIndex + 1)} className={`cursor-pointer font-medium text-lg rounded-lg text-blue-500 hover:bg-blue-200 hover:bg-opacity-70 px-2 py-1 transition-all duration-200 ease-in-out`}>See All</h1>
-                    </div>
-                    <div>
-                        {sales.map((sale, index) => {
-                            return (
-                                <div className={`border-b-2 border-b-gray-400 px-3 py-2`} index={sale}>
-                                    <p className={`flex items-center justify-between w-full`}><span className={`text-lg font-medium`}>{sale.orderer}</span><span className={`text-lg font-medium text-green-500`}>${sale.purchasePrice.toFixed(2)}</span></p>
-                                    <p className={`flex items-center justify-between w-full`}><span>{sale.productPurchased}</span><span>{sale.quantityPounds.toFixed(2)} lbs</span></p>
-                                </div>
-                            )
-                        })}
-                    </div>
+            </div>
+            <div className={`mb-4 flex justify-between w-11/12 mx-auto`}>
+                <div className={`w-[50.25%] rounded-xl p-5 bg-white`}>
+                    <h1 className={`font-mono font-semibold text-2xl mb-6`}>Products</h1>
+                </div>
+                <div className={`w-[48.25%] rounded-xl p-5 bg-white`}>
+                    <h1 className={`font-mono font-semibold text-2xl mb-6`}>Sales</h1>
                 </div>
             </div>
         </div>
