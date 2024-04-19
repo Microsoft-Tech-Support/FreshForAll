@@ -5,13 +5,13 @@ import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDZDdedktj5NGfhOrTngfCpIrrb3Gg4i-M",
-  authDomain: "freshforall-d3edb.firebaseapp.com",
-  projectId: "freshforall-d3edb",
-  storageBucket: "freshforall-d3edb.appspot.com",
-  messagingSenderId: "327292123986",
-  appId: "1:327292123986:web:b60a28c4396b5be115d88b",
-  measurementId: "G-MQ39E56W0F"
+  apiKey: "AIzaSyBXXRKjtTQRvQuremKqeKaam4VyEBKCnn4",
+  authDomain: "freshforall-8863b.firebaseapp.com",
+  projectId: "freshforall-8863b",
+  storageBucket: "freshforall-8863b.appspot.com",
+  messagingSenderId: "154520455357",
+  appId: "1:154520455357:web:37399fb4a1e49bc6f48fd4",
+  measurementId: "G-TJ1P36WVJZ"
 };
 
 const app = initializeApp(firebaseConfig);
