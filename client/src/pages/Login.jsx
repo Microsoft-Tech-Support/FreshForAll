@@ -3,7 +3,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { useState } from 'react';
 import { auth, db } from '../firebase';
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { useNavigate, Link } from 'react-router-dom';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
@@ -39,12 +39,17 @@ export default function Login({ setLoggedIn, setName }) {
     }
 
     const oAuthSignIn = () => {
-        signInWithPopup(auth, new GoogleAuthProvider()).then((result) => {
-            if (result) {
+        signInWithPopup(auth, new GoogleAuthProvider()).then((user) => {
+            if (user) {
                 console.log("Signed In!");
-                setName(result.user.displayName);
-                setLoggedIn(true);
-                navigate('/dashboard', { replace: true });
+                setDoc(doc(db, "users", user.user.uid), {
+                    email: user.user.email,
+                    username: user.user.displayName,
+                }, { merge: true }).then(() => {
+                    setName(user.user.displayName);
+                    setLoggedIn(true);
+                    navigate('/dashboard', { replace: true });
+                });
             }
         }).catch(e => {
             console.error("Error signing in with OAuth:", e);
