@@ -56,12 +56,12 @@ export default function Register({ setLoggedIn, setName }) {
         signInWithPopup(auth, new GoogleAuthProvider()).then((user) => {
             if (user) {
                 console.log("Signed In!");
-                setDoc(doc(db, "users", user.user.uid, {
+                setDoc(doc(db, "users", user.user.uid), {
                     email: user.user.email,
                     firstName: fName,
                     lastName: lName,
                     username: user.user.displayName,
-                }, { merge: true })).then(() => {
+                }, { merge: true }).then(() => {
                     setName(user.user.displayName);
                     setLoggedIn(true);
                     navigate('/dashboard', { replace: true });
