@@ -35,7 +35,7 @@ function App() {
             <Route path='/Dashboard' element={<Dashboard />} />
             <Route path="/Register" element={<Register setLoggedIn={setLoggedIn} setName={setName} />} />
             <Route path="/Settings" element={<Settings />} />
-            <Route path="/Sell" element={<Sell />} />
+            <Route path="/Sell" element={<Sell username={username} />} />
             <Route path="/Buy" element={<Buy />} />
             <Route path="/Buy/:id" element={<ShowProduct />} />
             <Route path="*" element={<NotFound />} />
