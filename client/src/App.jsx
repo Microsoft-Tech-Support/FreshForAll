@@ -19,6 +19,7 @@ import Payment from './pages/Payment';
 // Components
 import SidebarNav from './components/SidebarNav';
 import Header from './components/Header';
+import Cart from './pages/Cart';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -37,6 +38,7 @@ function App() {
             <Route path="/Register" element={<Register setLoggedIn={setLoggedIn} setName={setName} />} />
             <Route path="/Settings" element={<Settings />} />
             <Route path="/Sell" element={<Sell username={username} />} />
+            <Route path='/Cart' element={<Cart />} />
             <Route path="/Buy" element={<Buy />} />
             <Route path="/Buy/:id" element={<ShowProduct username={username} />} />
             <Route path='/Buy/:id/Checkout' element={<Payment />} />
