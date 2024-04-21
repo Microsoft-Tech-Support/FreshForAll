@@ -14,6 +14,7 @@ import Sell from './pages/Sell';
 import Buy from './pages/Buy';
 import NotFound from './pages/404';
 import Login from './pages/Login';
+import Payment from './pages/Payment';
 
 // Components
 import SidebarNav from './components/SidebarNav';
@@ -37,7 +38,8 @@ function App() {
             <Route path="/Settings" element={<Settings />} />
             <Route path="/Sell" element={<Sell username={username} />} />
             <Route path="/Buy" element={<Buy />} />
-            <Route path="/Buy/:id" element={<ShowProduct />} />
+            <Route path="/Buy/:id" element={<ShowProduct username={username} />} />
+            <Route path='/Buy/:id/Checkout' element={<Payment />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
       </div>
